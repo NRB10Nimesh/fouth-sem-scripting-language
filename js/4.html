@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Capitalize Words</title>
+</head>
+<body>
+  <h2>Capitalize First Letter of Each Word</h2>
+
+  <script>
+    function capitalizeWords(str) {
+      return str
+        .split(" ")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+    }
+
+    // Example string
+    const input = "this is an example";
+    const result = capitalizeWords(input);
+
+    // Show result on page
+    document.body.innerHTML += `<p>Original: ${input}</p>`;
+    document.body.innerHTML += `<p>Capitalized: ${result}</p>`;
+  </script>
+</body>
+</html>

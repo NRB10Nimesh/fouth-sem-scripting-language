@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Count Vowels in String</title>
+</head>
+<body>
+  <h2>Vowel Counter Demo</h2>
+  <p>The result will appear below after you enter a string.</p>
+
+  <script>
+    function countVowels(str) {
+      const vowels = "aeiouAEIOU";
+      let count = 0;
+
+      for (let char of str) {
+        if (vowels.includes(char)) {
+          count++;
+        }
+      }
+
+      return count;
+    }
+
+    // Ask user for input
+    const input = prompt("Enter a string to count vowels:");
+    
+    if (input !== null && input.trim() !== "") {
+      const result = countVowels(input);
+      document.body.innerHTML += `<p>Number of vowels: ${result}</p>`;
+    } else {
+      document.body.innerHTML += `<p>No valid input provided.</p>`;
+    }
+  </script>
+</body>
+</html>

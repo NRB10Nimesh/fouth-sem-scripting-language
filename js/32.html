@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Minimal Counter</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    #display {
+      font-size: 40px;
+      margin: 20px;
+      padding: 10px;
+      background: pink;
+      display: inline-block;
+      width: 80px;
+    }
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      margin: 5px;
+      background: lightgreen;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Counter App</h2>
+  <div>
+    <button onclick="change(1)">+</button>
+    <div id="display">0</div>
+    <button onclick="change(-1)">-</button>
+  </div>
+  <button onclick="reset()">Reset</button>
+
+  <script>
+    let count = 0; // start from 0
+    const display = document.getElementById('display');
+
+    function change(val) {
+      count += val;
+      display.textContent = count;
+    }
+
+    function reset() {
+      count = 0;
+      display.textContent = count;
+    }
+  </script>
+</body>
+</html>

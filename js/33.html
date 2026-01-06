@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Calculator</title>
+  <style>
+    body { font-family: sans-serif; background: #e0ffe0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .calc { background: #b0ffb0; padding: 10px; border: 1px solid #080; border-radius: 6px; width: 220px; }
+    #display { height: 40px; font-size: 24px; margin-bottom: 10px; text-align: right; padding: 5px; background: #fff; border: 1px solid #080; }
+    .btns { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
+    button { font-size: 18px; padding: 10px; background: #d0ffd0; border: 1px solid #080; cursor: pointer; }
+    button:active { background: #a0f0a0; }
+  </style>
+</head>
+<body>
+  <div class="calc">
+    <div id="display">0</div>
+    <div class="btns">
+      <button onclick="press('7')">7</button>
+      <button onclick="press('8')">8</button>
+      <button onclick="press('9')">9</button>
+      <button onclick="press('/')">/</button>
+      <button onclick="press('4')">4</button>
+      <button onclick="press('5')">5</button>
+      <button onclick="press('6')">6</button>
+      <button onclick="press('*')">*</button>
+      <button onclick="press('1')">1</button>
+      <button onclick="press('2')">2</button>
+      <button onclick="press('3')">3</button>
+      <button onclick="press('-')">-</button>
+      <button onclick="press('0')">0</button>
+      <button onclick="press('.')">.</button>
+      <button onclick="calculate()">=</button>
+      <button onclick="press('+')">+</button>
+      <button onclick="clearDisplay()" style="grid-column: span 4; background:#ffdddd;">C</button>
+    </div>
+  </div>
+
+  <script>
+    let input = '';
+
+    function press(val) {
+      input += val;
+      document.getElementById('display').textContent = input;
+    }
+
+    function calculate() {
+      try {
+        input = String(eval(input));
+        document.getElementById('display').textContent = input;
+      } catch {
+        document.getElementById('display').textContent = 'Error';
+        input = '';
+      }
+    }
+
+    function clearDisplay() {
+      input = '';
+      document.getElementById('display').textContent = '0';
+    }
+  </script>
+</body>
+</html>

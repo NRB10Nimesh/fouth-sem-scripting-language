@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation</title>
+  <style>
+    body { font-family: Verdana; margin: 20px; }
+    form { max-width: 500px; margin: auto; }
+    label { display: block; margin-top: 10px; }
+    input, select { width: 100%; padding: 8px; margin-top: 5px; }
+    .error { color: red; font-size: 0.9em; }
+    button { margin-top: 15px; padding: 10px 20px; }
+  </style>
+</head>
+<body>
+  <form id="myForm" onsubmit="return validateForm()">
+    <label>Name <input type="text" id="name"></label>
+    <label>Address <input type="text" id="address"></label>
+    <label>Username <input type="text" id="username"></label>
+    <label>Email <input type="text" id="email"></label>
+    <label>Password <input type="password" id="password"></label>
+    <label>Website <input type="text" id="website"></label>
+    <label>Phone <input type="text" id="phone"></label>
+    <label>Gender:
+      <input type="radio" name="gender" value="Male"> Male
+      <input type="radio" name="gender" value="Female"> Female
+    </label>
+    <label>Course:
+      <select id="course">
+        <option value="">--Select--</option>
+        <option value="BCA">BCA</option>
+        <option value="BSc">BSc</option>
+        <option value="BIT">BIT</option>
+      </select>
+    </label>
+    <button type="submit">Submit</button>
+    <div id="error" class="error"></div>
+  </form>
+
+  <script>
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const phone = document.getElementById("phone").value.trim();
+      const gender = document.querySelector('input[name="gender"]:checked');
+      const course = document.getElementById("course").value;
+      const error = document.getElementById("error");
+      error.innerHTML = "";
+
+      if (!name || /\d/.test(name)) return showError("Invalid name");
+      if (!address) return showError("Address is required");
+      if (!username || /[^a-zA-Z0-9_]/.test(username) || /\s/.test(username)) return showError("Invalid username");
+      if (!email || !email.includes("@")) return showError("Invalid email");
+      if (!password || !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(password)) return showError("Weak password");
+      if (!phone || !/^(98|97|96)\d{8}$/.test(phone)) return showError("Invalid phone number");
+      if (!gender) return showError("Gender is required");
+      if (!course) return showError("Please select a course");
+
+      alert("Form submitted successfully!");
+      return true;
+
+      function showError(msg) {
+        error.innerHTML = msg;
+        return false;
+      }
+    }
+  </script>
+</body>
+</html>

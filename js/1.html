@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reverse Number without Sign</title>
+</head>
+<body>
+  <h2>Reverse Number Demo</h2>
+  <p></p>
+
+  <script>
+    function reverseNumber(num) {
+      // Just reverse digits, no sign restoration
+      const reversed = num.toString().split('').reverse().join('');
+      return parseInt(reversed);
+    }
+
+    // Ask user for input
+    const input = prompt("Enter a number to reverse:");
+    
+    if (input !== null && !isNaN(input)) {
+      const result = reverseNumber(Number(input));
+      document.body.innerHTML += `<p>Reversed number: ${result}</p>`;
+    } else {
+      document.body.innerHTML += `<p>Invalid input. Please refresh and try again.</p>`;
+    }
+  </script>
+</body>
+</html>

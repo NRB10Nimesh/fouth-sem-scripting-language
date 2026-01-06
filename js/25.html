@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const personaccount = {
+            firstname: "Rashu",
+            lastname: "queen",
+            incomes: [],
+            expenses: [],
+
+            addincome(desc, amount){
+                this.incomes.push({desc, amount});
+            },
+            addexpenses(desc, amount){
+                this.expenses.push({desc, amount});
+            },
+            totalincome(){
+                return this.incomes.reduce((a, b) => a + b.amount, 0);
+            },
+            totalexpenses(){
+                return this.expenses.reduce((a, b) => a + b.amount, 0);
+            },
+            accountbalance(){
+                return this.totalincome() - this.totalexpenses();
+            },
+            accountinfo() {
+                return `${this.firstname} ${this.lastname} balance: ${this.accountbalance()}`;
+            }
+        };
+        personaccount.addincome("Salary", 50000);
+        personaccount.addincome("Freelancing", 15000);
+        personaccount.addexpenses("Rent", 12000);
+        personaccount.addexpenses("Food", 5000);
+
+        console.log("Total income;", personaccount.totalincome());
+        console.log("Total expenses;", personaccount.totalexpenses());
+        console.log("Balance;", personaccount.accountbalance());
+        console.log( personaccount.accountinfo());
+    </script>
+</body>
+</html>

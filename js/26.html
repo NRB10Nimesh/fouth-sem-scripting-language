@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function tenmost(str){
+            let words = str.toLowerCase().match(/\w+/g);
+            let freq = {};
+            words.forEach(w => freq[w] = (freq[w] || 0) +1);
+            return Object.entries(freq)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 10)
+            .map(([word, count]) => ({word, count}));
+        }
+        let input = prompt("Enter a paragraph: ");
+        console.log(tenmost(input));
+    </script>
+</body>
+</html>

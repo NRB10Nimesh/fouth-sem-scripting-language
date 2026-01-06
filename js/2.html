@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alphabetical Order String</title>
+</head>
+<body>
+  <h2>Alphabetical Order Demo</h2>
+  <p>The result will appear below after you enter a string.</p>
+
+  <script>
+    function sortStringAlphabetically(str) {
+      return str.split('').sort().join('');
+    }
+
+    // Ask user for input
+    const input = prompt("Enter a string to sort alphabetically:");
+    
+    if (input !== null && input.trim() !== "") {
+      const result = sortStringAlphabetically(input);
+      document.body.innerHTML += `<p>Sorted string: ${result}</p>`;
+    } else {
+      document.body.innerHTML += `<p>No valid input provided.</p>`;
+    }
+  </script>
+</body>
+</html>

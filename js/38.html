@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Button Events</title>
+  <style>
+    #para {
+      font-size: 12pt;
+      background-color: white;
+      color: black;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+    button {
+      margin: 5px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <button onclick="changeBodyBg()" style="background-color: blue; color: white;">Change Background</button>
+  <button onclick="changeParaBg()" style="background-color: lightcoral;">Change Paragraph Background</button>
+  <button onclick="hidePara()" style="background-color: yellow;">Hide Paragraph</button>
+  <button onclick="showPara()" style="background-color: green; color: white;">Show Paragraph</button>
+  <button onclick="increaseFont()" style="background-color: purple; color: white;">Increase font Size by 2pt.</button>
+  <button onclick="decreaseFont()" style="background-color: darkgreen; color: white;">Decrease font Size by 2pt.</button>
+  <button onclick="resetFont()" style="background-color: red; color: white;">Reset font into 12 pt.</button>
+  <button onclick="changeTextColor()" style="background-color: darkblue; color: white;">Change Text Color</button>
+
+  <p id="para">This is a sample paragraph. Click the buttons above to interact with it.</p>
+
+  <script>
+    function changeBodyBg() {
+      document.body.style.backgroundColor = "#e0f7fa";
+    }
+
+    function changeParaBg() {
+      document.getElementById("para").style.backgroundColor = "#ffe0b2";
+    }
+
+    function hidePara() {
+      document.getElementById("para").style.display = "none";
+    }
+
+    function showPara() {
+      document.getElementById("para").style.display = "block";
+    }
+
+    function increaseFont() {
+      let para = document.getElementById("para");
+      let currentSize = parseInt(window.getComputedStyle(para).fontSize);
+      para.style.fontSize = (currentSize + 2) + "pt";
+    }
+
+    function decreaseFont() {
+      let para = document.getElementById("para");
+      let currentSize = parseInt(window.getComputedStyle(para).fontSize);
+      para.style.fontSize = (currentSize - 2) + "pt";
+    }
+
+    function resetFont() {
+      document.getElementById("para").style.fontSize = "12pt";
+    }
+
+    function changeTextColor() {
+      document.getElementById("para").style.color = "#4a148c";
+    }
+  </script>
+
+</body>
+</html>

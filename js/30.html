@@ -1,0 +1,37 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   const countries = [
+  "Nepal", "India", "China", "USA", "Canada", "Brazil",
+  "Australia", "Japan", "South Korea", "Germany", "France", "Italy",
+  "Spain", "Mexico", "Argentina", "Egypt", "South Africa", "Russia",
+  "Turkey", "Saudi Arabia", "Thailand", "Vietnam", "Malaysia", "Indonesia",
+  "Philippines", "Pakistan", "Bangladesh", "Sri Lanka", "Morocco", "Kenya",
+  "Nigeria", "Ethiopia", "Greece", "Norway", "Sweden", "Finland",
+  "Denmark", "Netherlands", "Belgium", "Switzerland", "Poland", "Czech Republic",
+  "Portugal", "Ireland", "New Zealand", "Singapore", "Iceland", "Israel",
+  "UAE", "Qatar"
+];
+
+const table = document.createElement("table");
+table.border = "1";
+table.cellPadding = "10";
+
+let row;
+countries.forEach((country, i) => {
+  if (i % 6 === 0) row = table.insertRow();
+
+  const cell = row.insertCell();
+  cell.textContent = country;
+});
+
+document.body.appendChild(table);
+    </script>
+</body>
+</html>

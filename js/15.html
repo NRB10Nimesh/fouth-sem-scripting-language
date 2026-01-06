@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let color =["Blue", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow"];
+        let o = ["th", "st", "nd", "rd"];
+        for (let i = 0; i < color.length; i ++){
+            let suffix = (i +1) < 4 ? o[i+1] : o[0];
+            console.log(`${i+1} ${suffix} choice is ${color[i]}. `);
+        }
+    </script>
+</body>
+</html>

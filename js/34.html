@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Analog Clock (Background Image)</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #e0f7e0;
+    }
+    .clock {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      background: url('clockface.jpg') no-repeat center/cover; /* replace with your image */
+      border-radius: 50%; /* keep round shape */
+    }
+    .hand {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: 0% 50%;
+      transform: rotate(0deg);
+    }
+    .hour {
+      width: 30%;
+      height: 4px;
+      background: #000;
+    }
+    .minute {
+      width: 40%;
+      height: 3px;
+      background: #000;
+    }
+    .second {
+      width: 45%;
+      height: 2px;
+      background: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="clock">
+    <div class="hand hour" id="hour"></div>
+    <div class="hand minute" id="minute"></div>
+    <div class="hand second" id="second"></div>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const sec = now.getSeconds();
+      const min = now.getMinutes();
+      const hr = now.getHours() % 12;
+
+      const secDeg = sec * 6;               // 360/60
+      const minDeg = min * 6 + sec * 0.1;   // smooth minute hand
+      const hrDeg = hr * 30 + min * 0.5;    // smooth hour hand
+
+      document.getElementById('second').style.transform = `rotate(${secDeg}deg)`;
+      document.getElementById('minute').style.transform = `rotate(${minDeg}deg)`;
+      document.getElementById('hour').style.transform = `rotate(${hrDeg}deg)`;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>

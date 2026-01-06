@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IntoUpper Demo</title>
+</head>
+<body>
+  <h2>Capitalize First Letter of Each Word</h2>
+  <div id="output"></div>
+
+  <script>
+    function intoUpper(str) {
+      // Capitalize the first letter of each word using regex
+      return str.replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    // Example string
+    const input = "the quick brown fox jumps over the lazy dog";
+    const result = intoUpper(input);
+
+    // Show results on page
+    document.getElementById("output").innerHTML = `
+      <p>Original: ${input}</p>
+      <p>Capitalized: ${result}</p>
+    `;
+  </script>
+</body>
+</html>

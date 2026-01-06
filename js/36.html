@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cookie Manager</title>
+  <style>
+    body { font-family: Verdana; padding: 20px; }
+    button { margin: 5px; padding: 10px 15px; }
+    table { border-collapse: collapse; margin-top: 15px; }
+    th, td { border: 1px solid #999; padding: 8px 12px; }
+  </style>
+</head>
+<body>
+  <h2>Cookie Manager</h2>
+  <button onclick="setCookie()">Set Cookie</button>
+  <button onclick="getCookie()">Get Cookie</button>
+  <button onclick="showCookies()">Show All Cookies</button>
+  <button onclick="deleteCookie()">Delete Cookie</button>
+  <button onclick="deleteAllCookies()">Delete All Cookies</button>
+
+  <div id="output"></div>
+
+  <script>
+    function setCookie() {
+      const key = prompt("Enter cookie key:");
+      const value = prompt("Enter cookie value:");
+      if (key && value) {
+        document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(value)}; path=/`;
+        alert("Cookie set!");
+      }
+    }
+
+    function getCookie() {
+      const key = prompt("Enter key to retrieve:");
+      const cookies = document.cookie.split("; ");
+      const found = cookies.find(c => c.startsWith(encodeURIComponent(key) + "="));
+      const output = document.getElementById("output");
+      output.innerHTML = found ? `<p><strong>${key}</strong>: ${decodeURIComponent(found.split("=")[1])}</p>` : `<p>No cookie found for key: ${key}</p>`;
+    }
+
+    function showCookies() {
+      const cookies = document.cookie.split("; ");
+      let html = "<table><tr><th>Key</th><th>Value</th></tr>";
+      cookies.forEach(c => {
+        const [k, v] = c.split("=");
+        html += `<tr><td>${decodeURIComponent(k)}</td><td>${decodeURIComponent(v)}</td></tr>`;
+      });
+      html += "</table>";
+      document.getElementById("output").innerHTML = html;
+    }
+
+    function deleteCookie() {
+      const key = prompt("Enter key to delete:");
+      document.cookie = `${encodeURIComponent(key)}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+      alert("Cookie deleted (if it existed).");
+    }
+
+    function deleteAllCookies() {
+      const cookies = document.cookie.split("; ");
+      cookies.forEach(c => {
+        const key = c.split("=")[0];
+        document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+      });
+      alert("All cookies deleted.");
+    }
+  </script>
+</body>
+</html>

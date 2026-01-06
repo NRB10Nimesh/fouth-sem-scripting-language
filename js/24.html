@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let dog = {};
+        console.log(dog);
+        dog.name = "Rocky";
+        dog.legs = 4;
+        dog.color = "Brown";
+        dog.age = 5;
+        dog.bark = function(){ return "woof woof";};
+
+        console.log(dog.name, dog.legs, dog.color, dog.age, dog.bark());
+        dog.breed = "Bulldog";
+        dog.getDogInfo = function() {
+            return `${this.name} is a ${this.color} ${this.breed} `;
+        };
+    </script>
+</body>
+</html>

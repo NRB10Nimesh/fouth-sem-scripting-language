@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function weekenddates(){
+            let today = new Date();
+            let day = today.getDay();
+            let saturday = new Date(today);
+            let sunday = new Date(today);
+            saturday.setDate(today.getDate() + ( 6 - day));
+            sunday.setDate(today.getDate() + ( 7 - day));
+
+            return { saturday, sunday};
+        }
+        console.log(weekenddates());
+    </script>
+</body>
+</html>
