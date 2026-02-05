@@ -1,0 +1,179 @@
+<!--9. Create web page that has registration form, validate according to following rules using 
+jQuery.
+a. Form field: Name, Address, Username, Email, Password, Website, Phone, 
+Gender(Radio), Course(Dropdown),
+b. Name Validation: We check to make sure the name field is not empty and does 
+not contain any numbers.
+c. Username Validation: We check to make sure the username field is not empty and 
+does not contain any spaces and special character except underscore (_).
+d. Phone Validation: We check to make sure the phone field is not empty, does not
+contain any character except numbers, and should start with [98/97/96].
+e. Gender Validation: We check the gender field is not empty.
+f. Address Validation: We check that the address field is not empty.
+g. Email Validation: We make sure that the email field is not empty and that it 
+includes the “@” symbol.
+h. Password Validation: We ensure that the password field is not empty and that the 
+password is at least eight characters long with at least one digit, one upper case 
+character, one lowercase character and one special character.
+i. Course Selection Validation: We check that a course has been selected from a 
+dropdown list.
+-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form Validation</title>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+        }
+        input, textarea, select {
+            margin: 5px;
+            padding: 5px;
+            width: 250px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        button {
+            padding: 8px 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Registration Form</h2>
+
+<form id="regForm">
+
+    Name:<br>
+    <input type="text" id="name">
+    <div class="error" id="nameErr"></div>
+
+    Address:<br>
+    <textarea id="address"></textarea>
+    <div class="error" id="addressErr"></div>
+
+    Username:<br>
+    <input type="text" id="username">
+    <div class="error" id="userErr"></div>
+
+    Email:<br>
+    <input type="text" id="email">
+    <div class="error" id="emailErr"></div>
+
+    Password:<br>
+    <input type="password" id="password">
+    <div class="error" id="passErr"></div>
+
+    Website:<br>
+    <input type="text" id="website">
+
+    Phone:<br>
+    <input type="text" id="phone">
+    <div class="error" id="phoneErr"></div>
+
+    Gender:<br>
+    <input type="radio" name="gender" value="Male"> Male
+    <input type="radio" name="gender" value="Female"> Female
+    <div class="error" id="genderErr"></div>
+
+    Course:<br>
+    <select id="course">
+        <option value="">Select Course</option>
+        <option value="BCA">BCA</option>
+        <option value="BBS">BBS</option>
+        <option value="BIM">BIM</option>
+    </select>
+    <div class="error" id="courseErr"></div>
+
+    <br><br>
+    <button type="submit">Register</button>
+
+</form>
+
+<script>
+$(document).ready(function(){
+
+    $("#regForm").submit(function(e){
+        e.preventDefault();
+
+        $(".error").text("");
+        let valid = true;
+
+        let name = $("#name").val();
+        let address = $("#address").val();
+        let username = $("#username").val();
+        let email = $("#email").val();
+        let password = $("#password").val();
+        let phone = $("#phone").val();
+        let course = $("#course").val();
+        let gender = $("input[name='gender']:checked").val();
+
+        // Name validation
+        if(name === "" || /\d/.test(name)){
+            $("#nameErr").text("Name is required and must not contain numbers");
+            valid = false;
+        }
+
+        // Address validation
+        if(address === ""){
+            $("#addressErr").text("Address is required");
+            valid = false;
+        }
+
+        // Username validation
+        if(username === "" || !/^[A-Za-z0-9_]+$/.test(username)){
+            $("#userErr").text("Username must contain only letters, numbers or underscore");
+            valid = false;
+        }
+
+        // Email validation
+        if(email === "" || !email.includes("@")){
+            $("#emailErr").text("Enter a valid email address");
+            valid = false;
+        }
+
+        // Password validation
+        let passRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+        if(!passRegex.test(password)){
+            $("#passErr").text("Password must be at least 8 chars with upper, lower, digit & special char");
+            valid = false;
+        }
+
+        // Phone validation
+        if(!/^(98|97|96)\d{8}$/.test(phone)){
+            $("#phoneErr").text("Phone must start with 98/97/96 and contain 10 digits");
+            valid = false;
+        }
+
+        // Gender validation
+        if(!gender){
+            $("#genderErr").text("Select gender");
+            valid = false;
+        }
+
+        // Course validation
+        if(course === ""){
+            $("#courseErr").text("Select a course");
+            valid = false;
+        }
+
+        if(valid){
+            alert("Registration Successful!");
+        }
+
+    });
+
+});
+</script>
+
+</body>
+</html>

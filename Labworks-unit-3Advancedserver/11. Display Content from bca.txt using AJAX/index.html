@@ -1,0 +1,57 @@
+<!--11. Write program to display content from bca.txt (description related to BCA) file into 
+webpage using AJAX based on JavaScript.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display BCA Content using AJAX</title>
+
+    <style>
+        #content {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #333;
+            width: 80%;
+            font-family: Arial;
+        }
+        button {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>BCA Program Information</h2>
+
+<button id="loadBtn">Load Content</button>
+
+<div id="content"></div>
+
+<script>
+// JavaScript AJAX
+document.getElementById("loadBtn").addEventListener("click", function(){
+
+    // Create XMLHttpRequest object
+    let xhr = new XMLHttpRequest();
+
+    // Specify file and method
+    xhr.open("GET", "bca.txt", true);
+
+    // On successful response
+    xhr.onload = function() {
+        if(xhr.status === 200){
+            document.getElementById("content").innerText = xhr.responseText;
+        } else {
+            document.getElementById("content").innerText = "Failed to load content";
+        }
+    };
+
+    // Send request
+    xhr.send();
+
+});
+</script>
+
+</body>
+</html>

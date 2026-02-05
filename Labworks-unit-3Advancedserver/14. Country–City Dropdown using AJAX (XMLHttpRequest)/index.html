@@ -1,0 +1,61 @@
+<!--14. Create webpage that has country and city dropdown box, when user select country system 
+must list city name according to country using AJAX using XMLHttpRequest object.-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Country City Dropdown</title>
+    <style>
+        body {
+            font-family: Arial;
+        }
+        select {
+            padding: 5px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Select Country and City</h2>
+
+Country:
+<select id="country" onchange="getCities()">
+    <option value="">Select Country</option>
+    <option value="Nepal">Nepal</option>
+    <option value="India">India</option>
+    <option value="USA">USA</option>
+</select>
+
+City:
+<select id="city">
+    <option value="">Select City</option>
+</select>
+
+<script>
+function getCities() {
+
+    let country = document.getElementById("country").value;
+
+    if(country === ""){
+        document.getElementById("city").innerHTML =
+            "<option value=''>Select City</option>";
+        return;
+    }
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "get_cities.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState === 4 && xhr.status === 200){
+            document.getElementById("city").innerHTML = xhr.responseText;
+        }
+    };
+
+    xhr.send("country=" + country);
+}
+</script>
+
+</body>
+</html>
